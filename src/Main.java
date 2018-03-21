@@ -3,16 +3,14 @@ import channels.*;
 public class Main {
 
     public static void main(String[] args) {
-	    // write your code here
-	    System.out.println("Hello World!");
-        Channel MC = new MC(2222, 512, "MC");
-	Channel MDB = new MDB(2223, 512, "MDB");
-	Channel MDR = new MDR(2224, 512, "MDR");
-	Channel UC = new UC(2225, 512, "UC");
+        Channel MC = new MC('m',"224.0.0.0",3781, 512, "MC");
+        Channel MDB = new MDB('m',"224.0.0.1",3785, 512, "MDB");
+        Channel MDR = new MDR('m',"224.0.0.2",3789, 512, "MDR");
+        Channel UC = new UC('u',"localhost",3000, 512, "UC");
         MC.start();
-	MDB.start();
-	MDR.start();
-	UC.start();
+        MDB.start();
+        MDR.start();
+        UC.start();
 	    
     }
 }
