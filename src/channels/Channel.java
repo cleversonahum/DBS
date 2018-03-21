@@ -23,20 +23,10 @@ public class Channel extends Thread {
         
         while(true) {
             DatagramPacket rPacket = new DatagramPacket(new byte[packetSize], packetSize);
-            System.out.println("Running");
+            System.out.println("Running "+threadName);
 			server.receive(rPacket);
             String msgReceived = new String(rPacket.getData());
             
-//            try {
-//                for(int i = 4; i > 0; i--) {
-//                    System.out.println("Thread: " + threadName + ", " + i);
-//                    // Let the thread sleep for a while.
-//                    Thread.sleep(50);
-//                }
-//            }
-//            catch (InterruptedException e) {
-//                 System.out.println("Thread " +  threadName + " interrupted.");
-//            }
         }
 
         }
