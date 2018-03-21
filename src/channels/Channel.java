@@ -1,26 +1,49 @@
 package channels;
 
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
 public class Channel extends Thread {
     private Thread t;
+    static DatagramSocket server;
     private String threadName;
+    private int packetSize;
+    private int portNumber;
    
-    Channel ( String name) {
+    public Channel (int port, int packetS, String name) {
         threadName = name;
-        System.out.println("Creating " +  threadName );
+        portNumber = port;
+        packetSize = packetS;
     }
    
     public void run() {
-        System.out.println("Running " +  threadName );
-        try {
-             for(int i = 4; i > 0; i--) {
-                System.out.println("Thread: " + threadName + ", " + i);
-                // Let the thread sleep for a while.
-                Thread.sleep(50);
-            }
-        } catch (InterruptedException e) {
-             System.out.println("Thread " +  threadName + " interrupted.");
+        try{
+            server = new DatagramSocket(portNumber);
+        
+        while(true) {
+            DatagramPacket rPacket = new DatagramPacket(new byte[packetSize], packetSize);
+            System.out.println("Running");
+			server.receive(rPacket);
+            String msgReceived = new String(rPacket.getData());
+            
+//            try {
+//                for(int i = 4; i > 0; i--) {
+//                    System.out.println("Thread: " + threadName + ", " + i);
+//                    // Let the thread sleep for a while.
+//                    Thread.sleep(50);
+//                }
+//            }
+//            catch (InterruptedException e) {
+//                 System.out.println("Thread " +  threadName + " interrupted.");
+//            }
         }
-        System.out.println("Thread " +  threadName + " exiting.");
+
+        }
+        catch(Exception e){
+            
+        }
+
     }
    
     public void start () {
@@ -33,14 +56,3 @@ public class Channel extends Thread {
      
     
 }
-
-//public class TestThread {
-//
-//   public static void main(String args[]) {
-//      Channel R1 = new Channel( "Thread-1");
-//      R1.start();
-//      
-//      Channel R2 = new Channel( "Thread-2");
-//      R2.start();
-//   }   
-//}
