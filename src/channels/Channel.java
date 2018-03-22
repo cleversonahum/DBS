@@ -71,5 +71,16 @@ public class Channel extends Thread {
         System.out.println("Default Funtion Channel Class");
     }
      
+    public void sendMessage(String msg, String addr, int port){
+        try (DatagramSocket server = new DatagramSocket()) {
+                DatagramPacket msgPacket = new DatagramPacket(msg.getBytes(),msg.getBytes().length, InetAddress.getByName(addr), port);
+                server.send(msgPacket);
+     
+                System.out.println("Msg Sent: " + msg);
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
     
 }
