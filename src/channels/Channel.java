@@ -30,8 +30,7 @@ public class Channel extends Thread {
                 while(true) {
                     DatagramPacket rPacket = new DatagramPacket(new byte[packetSize], packetSize);
         			server.receive(rPacket);
-                    String msgReceived = new String(rPacket.getData());
-                    select(msgReceived);
+                    select(rPacket);
                 }
     
             }
@@ -47,8 +46,7 @@ public class Channel extends Thread {
                 while (true) {
                     DatagramPacket rPacket = new DatagramPacket(new byte[packetSize], packetSize);
                     clientSocket.receive(rPacket);
-                    String msgReceived = new String(rPacket.getData());
-                    select(msgReceived);
+                    select(rPacket);
                 }
             } 
             catch (IOException ex) {
@@ -69,8 +67,8 @@ public class Channel extends Thread {
         }
     }
     
-    public void select (String msg) {
-        System.out.println("Msg Received " + msg);
+    public void select (DatagramPacket dPacket) { //This function is Overrided by Extended Classes
+        System.out.println("Default Funtion Channel Class");
     }
      
     
