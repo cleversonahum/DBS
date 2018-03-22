@@ -26,12 +26,12 @@ public class Channel extends Thread {
         
             try{
                 server = new DatagramSocket(portNumber);
+                System.out.println("Running  "+serverType+"  "+threadName+"  "+address+"  "+portNumber);
                 while(true) {
                     DatagramPacket rPacket = new DatagramPacket(new byte[packetSize], packetSize);
-                    System.out.println("Running  "+serverType+"  "+threadName);
         			server.receive(rPacket);
                     String msgReceived = new String(rPacket.getData());
-                    
+                    select(msgReceived);
                 }
     
             }
@@ -43,13 +43,13 @@ public class Channel extends Thread {
             
             try (MulticastSocket clientSocket = new MulticastSocket(portNumber)){
                 clientSocket.joinGroup(InetAddress.getByName(address));
-         
+                System.out.println("Running  "+serverType+"  "+threadName+"  "+address+"  "+portNumber);
                 while (true) {
                     DatagramPacket rPacket = new DatagramPacket(new byte[packetSize], packetSize);
-                    System.out.println("Running  "+serverType+"  "+threadName);
                     clientSocket.receive(rPacket);
                     String msgReceived = new String(rPacket.getData());
-            }
+                    select(msgReceived);
+                }
             } 
             catch (IOException ex) {
                 ex.printStackTrace();
@@ -67,6 +67,10 @@ public class Channel extends Thread {
             t = new Thread (this, threadName);
             t.start ();
         }
+    }
+    
+    public void select (String msg) {
+        System.out.println("Msg Received " + msg);
     }
      
     
