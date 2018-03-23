@@ -5,4 +5,5 @@ public class UC extends Channel {
 		super(type, address, port, packetS, name); 
 	}
     
+    
 }

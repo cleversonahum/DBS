@@ -10,7 +10,7 @@ public class MDB extends Channel {
 	}
 	
 	public void select (DatagramPacket dPacket) {
-	    String msg = new String(dPacket.getData()); //I believe that will change, because here the bytes from the content are converted to String
+	    String msg = new String(dPacket.getData()); //I believe thaimport filesystem.*;t will change, because here the bytes from the content are converted to String
 	    String[] cmd = msg.split("\\s+"); //Splitting message received
 	    
 	    if(cmd[0].trim().equals("PUTCHUNK")) { //Checks if the message has the command expected
