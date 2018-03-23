@@ -15,6 +15,7 @@ public class MC extends Channel {
 	    
 	    if(cmd[0].trim().equals("DELETE")) { //Checks if the message has the command expected
 	       //Here some Function to Delete the file and all chunks related to it
+	       System.out.println("Delete chunk function called");
 	       
             try {
                 Random random = new Random();
