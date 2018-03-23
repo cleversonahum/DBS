@@ -71,7 +71,7 @@ public class Channel extends Thread {
         System.out.println("Default Funtion Channel Class");
     }
      
-    public void sendMessage(String msg, String addr, int port){
+    public void sendMessage(String msg, String addr, int port){ //Sending Messages to Channels, needs to implement new option to send content bytes, maybe changing it parameters to a Datagram Packet
         try (DatagramSocket server = new DatagramSocket()) {
                 DatagramPacket msgPacket = new DatagramPacket(msg.getBytes(),msg.getBytes().length, InetAddress.getByName(addr), port);
                 server.send(msgPacket);

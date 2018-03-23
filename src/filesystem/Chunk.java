@@ -19,4 +19,9 @@ public class Chunk {
     public void storeChunk(byte[] data){
         System.out.println("Writing Chunk into Disk"); //code line to delete after
     }
+    
+    public byte[] getChunk(String id) {
+        System.out.println("Getting Chunk of Disk"); //code line to delete after
+        return(("teste").getBytes()); //It needs to be changed to return the Chunk content
+    }
 }
