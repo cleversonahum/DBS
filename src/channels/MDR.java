@@ -14,8 +14,7 @@ public class MDR extends Channel {
 	    String[] cmd = msg.split("\\s+"); //Splitting message received
 	    
 	    if(cmd[0].trim().equals("GETCHUNK")) { //Checks if the message has the command expected
-	       Chunk newChunk = new Chunk("ExampleID", 1, 2, ("teste").getBytes()); //Create a Chunk with initial values, and after it values will change using restore function
-	       byte[] content = newChunk.getChunk("ExampleID"); //Function that
+	       byte[] content = Chunk.getChunk("ExampleID"); //Function that
             try {
                 Random random = new Random();
                 Thread.sleep(random.nextInt(400));

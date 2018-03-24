@@ -11,7 +11,7 @@ public class Chunk {
     private int chunkNumber;
     private int replicationDeg;
     private int contentSize;
-    private final String PATH = "data/chunks/";
+    private final static String PATH = "data/chunks/";
     
     public Chunk(String id, int chunkn, int replication,  byte[] body){
         fileId = id;
@@ -24,7 +24,7 @@ public class Chunk {
     }
     
     public void storeChunk(byte[] data){
-        System.out.println("Writing Chunk into Disk"); //code line to delete after
+        //System.out.println("Writing Chunk into Disk"); //code line to delete after
         try{
             Path pathChunk = Paths.get(PATH.concat(fileId));
             Files.createDirectories(pathChunk.getParent());
@@ -34,8 +34,12 @@ public class Chunk {
         catch(Exception e) {e.printStackTrace();} 
     }
     
-    public byte[] getChunk(String id) {
-        System.out.println("Getting Chunk of Disk"); //code line to delete after
-        return(("teste").getBytes()); //It needs to be changed to return the Chunk content
+    public static byte[] getChunk(String id) {
+        byte[] rChunk = null;
+        try {
+            rChunk = Files.readAllBytes(Paths.get(PATH.concat(id)));
+        } catch(Exception e) {e.printStackTrace();}
+        
+        return rChunk;
     }
 }
