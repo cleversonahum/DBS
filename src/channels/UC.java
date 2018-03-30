@@ -1,43 +1,38 @@
 package channels;
 
-import java.net.*;
+import java.rmi.registry.Registry;
+import java.rmi.registry.LocateRegistry;
+//import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import filesystem.*;
 
-public class UC extends Channel {
-	public UC(char type, String address, int port, int packetS, String name) {
-		super(type, address, port, packetS, name); 
-	}
+public class UC extends FileChunk {
     
-    public void select (DatagramPacket dPacket) {
-	    String msg = new String(dPacket.getData()); //I believe thaimport filesystem.*;t will change, because here the bytes from the content are converted to String
-	    String[] cmd = msg.split("\\s+"); //Splitting message received
-	    
-	    switch(cmd[0].trim()) {
-	        case "BACKUP":
-	           backupFile();
-	           break;
-	        
-	        case "RESTORE":
-	           restoreFile();
-	           break;
-	           
-	        case "DELETE":
-	           deleteFile();
-	           break;
-	        
-	        //Add other cases here
-	        
-            default:
-                System.out.println("Comand Not Found");
-                break;
-	    }
-	    if(cmd[0].trim().equals("PUTCHUNK")) { //Checks if the message has the command expected
-	       
+    public void start() {
+        System.out.println("TESTEEEEEE");
+        try {
+            // Instantiating the implementation class 
+            FileChunk obj = new FileChunk();
+
+            // Exporting the object of implementation class  
+            //System.out.println("Ta chegando antes");
+            RMI stub = (RMI) UnicastRemoteObject.exportObject(obj, 0);
+            //System.out.println("depois");
+
+            // Binding the remote object (stub) in the registry 
+            Registry registry = LocateRegistry.getRegistry();
+            //System.out.println("aqui não");
+
+            registry.bind("RMI", stub);
+            //System.out.println(" e aqui");
+            System.err.println("Server ready");
         }
-	    else
-	       System.out.println("Command \""+cmd[0]+"\" Not Found");
-	    
-	}
+        catch (Exception e) {
+            System.err.println("Server exception: " + e.toString());
+            e.printStackTrace();
+        }
+    }	
 	
 	private void backupFile(){
 	    
@@ -54,6 +49,5 @@ public class UC extends Channel {
 	private void manageLocalStore() {
 	    
 	}
-	
 	
 }
