@@ -60,7 +60,7 @@ public class Message {
 	}
 	
 	//codifica uma string para SHa-256
-	public String getHash(String input) {
+	public static String getHash(String input) {
 		String hashValue="";
 		
 		try {
