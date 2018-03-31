@@ -15,10 +15,12 @@ public class Client {
         RMI stub = (RMI) registry.lookup("RMI");
 
         // Calling the remote method using the obtained object 
-        char[] chars = new char[1024*1024*10];
-        Arrays.fill(chars, 'f');
-        String teste = new String(chars);
-        stub.storeFile("teste", teste.getBytes());
+        //char[] chars = new char[1024*1024*10];
+        //Arrays.fill(chars, 'f');
+        //String teste = new String(chars);
+        //stub.storeFile("teste", teste.getBytes());
+        
+        System.out.println(stub.getFile("teste"));
 
         // System.out.println("Remote method invoked"); 
       } catch (Exception e) {

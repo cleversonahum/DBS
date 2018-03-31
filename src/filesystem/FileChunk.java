@@ -26,5 +26,14 @@ public class FileChunk implements RMI {
         }
         catch(Exception e) {e.printStackTrace();} 
     }
+    
+    public byte[] getFile(String id) {
+        byte[] rFile = null;
+        try {
+            rFile = Files.readAllBytes(Paths.get(PATH.concat(Message.getHash(id))));
+        } catch(Exception e) {e.printStackTrace();}
+        
+        return rFile;
+    }
 
 }
