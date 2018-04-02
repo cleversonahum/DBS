@@ -22,6 +22,7 @@ public class MC extends Channel {
 	       //Here some Function to Delete the file and all chunks related to it
 	       System.out.println("Delete chunk function called");
 	       Chunk.deleteChunks(M.getFile_id());
+	       Chunk.deleteFiles(M.getFile_id());
 	      
             try {
                 Random random = new Random();
