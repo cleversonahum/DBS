@@ -23,7 +23,7 @@ public class MC extends Channel {
                 Thread.sleep(random.nextInt(400));
             } catch (Exception e) {e.printStackTrace();}
 
-	       sendMessage("Removed BLA BLA BLA", "224.0.0.0", 3781); //Sending Example message of confirmation into MC channel
+	       //sendMessage("Removed BLA BLA BLA", "224.0.0.0", 3781); //Sending Example message of confirmation into MC channel
         }
 	    else
 	       System.out.println("Command \""+"\" Not Found");

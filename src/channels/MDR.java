@@ -20,7 +20,7 @@ public class MDR extends Channel {
                 Thread.sleep(random.nextInt(400));
             } catch (Exception e) {e.printStackTrace();}
 
-	       sendMessage("Chunk BLA BLA BLA", "224.0.0.0", 3781); //Sending Example message of confirmation into MC channel
+	       //sendMessage("Chunk BLA BLA BLA", "224.0.0.0", 3781); //Sending Example message of confirmation into MC channel
         }
 	    else
 	       System.out.println("Command \""+cmd[0]+"\" Not Found");
