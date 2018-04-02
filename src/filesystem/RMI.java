@@ -7,5 +7,4 @@ public interface RMI extends Remote{
     void printMessage() throws RemoteException;
     void storeFile(String fileId, byte[] data) throws RemoteException;
     public byte[] getFile(String id) throws RemoteException;
-    public void deleteChunks (String fileID);
 }
