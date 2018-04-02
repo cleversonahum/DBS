@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.util.Random;
 
 import channels.Channel;
+import channels.MC;
 import channels.MDB;
 
 import java.nio.file.Files;
@@ -29,14 +30,12 @@ public class FileChunk implements RMI {
         System.out.println("TESTE3");
     }
 
-    public void storeFile(String fileId, int serverID, int repDeg, String addr, int port, MDB mdb, byte[] data){
+    public void storeFile(String fileId, byte[] data){
         //System.out.println("Writing Chunk into Disk"); //code line to delete after
-    		System.out.println("WHats");
         try{
             Path pathChunk = Paths.get(PATH.concat(Message.getHash(fileId)));
             Files.createDirectories(pathChunk.getParent());
             Files.write(pathChunk, data);
-            splitFile(PATH.concat(Message.getHash(fileId)), serverID, repDeg, addr, port, mdb);
 
         }
         catch(Exception e) {e.printStackTrace();}
@@ -52,28 +51,14 @@ public class FileChunk implements RMI {
     }
     
    
-   /*
-   * Deletes the chunks in the respective folders
-   * @param fileName Respective file id of the chunks
-   */
-  public void deleteChunks (String fileID) {
-
-      String filePath= "data/chunks/";
-      File file = new File(filePath);
-      File[] listDir = file.listFiles();
-
-        for (int i = 0; i < listDir.length; i++) {
-
-            if (listDir[i].isDirectory() && listDir[i].getName().contains(fileID)) {
-
-              File[] listChunks = listDir[i].listFiles();
-               for(int j = 0; j < listChunks.length; j++){
-                          listChunks[j].delete();
-                           System.out.println("Chunk Deleted");
-                     }
-                       listDir[i].delete();
-            }
-        }
+   
+  public static void deleteFile(String fileName, int serverID, String address,int port,MC mc) {
+	  
+	  String fileID= Message.getHash(fileName);
+	  String header = "DELETE "+ "1.0 " + Integer.toString(serverID) + " " + fileID + " " +"\r\n\r\n";
+	  System.out.println(header);
+	  mc.sendMessage(header.getBytes(), address, port);
+	  
   }
   
   public static void splitFile(String fileName, int serverID, int repDeg,  String address,int port, MDB mdb) {
