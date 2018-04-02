@@ -56,17 +56,31 @@ public class Chunk {
         File[] listDir = file.listFiles();
 
           for (int i = 0; i < listDir.length; i++) {
-
-              if (listDir[i].isDirectory() && listDir[i].getName().contains(fileID)) {
-
-                File[] listChunks = listDir[i].listFiles();
-                 for(int j = 0; j < listChunks.length; j++){
-                            listChunks[j].delete();
-                             System.out.println("Chunk Deleted");
-                       }
-                         listDir[i].delete();
+        	
+              if (listDir[i].getName().contains(fileID)) {
+            	
+            	  listDir[i].delete();
+              System.out.println("Chunk Deleted");
+                        
               }
           }
+    }
+    
+    public static void deleteFiles (String fileID) {
+    	 	String filePath= "data/files/";
+         File file = new File(filePath);
+         File[] listDir = file.listFiles();
+
+           for (int i = 0; i < listDir.length; i++) {
+         	
+               if (listDir[i].getName().equals(fileID)) {
+             	
+             	  listDir[i].delete();
+             	  System.out.println("File Deleted");
+                         
+               }
+           }
+    	
     }
     
 }
