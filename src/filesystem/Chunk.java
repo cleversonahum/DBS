@@ -14,7 +14,8 @@ public class Chunk {
     private final static String PATH = "data/chunks/";
     
     public Chunk(String id, int chunkn, int replication,  byte[] body){
-        fileId = id;
+        fileId = id+"-"+chunkn;
+        System.out.println("FILED ID: " +fileId);
         chunkNumber = chunkn;
         replicationDeg = replication;
         contentSize = body.length;
@@ -26,6 +27,7 @@ public class Chunk {
     public void storeChunk(byte[] data){
         //System.out.println("Writing Chunk into Disk"); //code line to delete after
         try{
+        	
             Path pathChunk = Paths.get(PATH.concat(fileId));
             Files.createDirectories(pathChunk.getParent());
             Files.write(pathChunk, data);
