@@ -15,7 +15,7 @@ public class Client {
         RMI stub = (RMI) registry.lookup("RMI");
 
         // Calling the remote method using the obtained object 
-        //char[] chars = new char[1024*1024*10];
+        //char[] chars = new char[1024*1024];
         //Arrays.fill(chars, 'f');
         //String teste = new String(chars);
         //stub.storeFile("teste", teste.getBytes());
