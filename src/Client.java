@@ -1,4 +1,5 @@
 import filesystem.*;
+import channels.*;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -15,12 +16,12 @@ public class Client {
         RMI stub = (RMI) registry.lookup("RMI");
 
         // Calling the remote method using the obtained object 
-        //char[] chars = new char[1024*1024];
-        //Arrays.fill(chars, 'f');
-        //String teste = new String(chars);
-        //stub.storeFile("teste", teste.getBytes());
-        
-        System.out.println(stub.getFile("teste"));
+        char[] chars = new char[1024*1024];
+        Arrays.fill(chars, 'f');
+        String teste = new String(chars);
+        stub.storeFile("./src/teste2", 1234, 2, "224.0.0.1", 3785, (channels.MDB) MDB, teste.getBytes());
+        //stub.storeFile("./src/teste2", teste.getBytes());
+        //System.out.println(stub.getFile("teste"));
 
         // System.out.println("Remote method invoked"); 
       } catch (Exception e) {

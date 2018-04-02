@@ -29,13 +29,14 @@ public class FileChunk implements RMI {
         System.out.println("TESTE3");
     }
 
-    public void storeFile(String fileId, byte[] data){
+    public void storeFile(String fileId, int serverID, int repDeg, String addr, int port, MDB mdb, byte[] data){
         //System.out.println("Writing Chunk into Disk"); //code line to delete after
     		System.out.println("WHats");
         try{
             Path pathChunk = Paths.get(PATH.concat(Message.getHash(fileId)));
             Files.createDirectories(pathChunk.getParent());
             Files.write(pathChunk, data);
+            splitFile(PATH.concat(Message.getHash(fileId)), serverID, repDeg, addr, port, mdb);
 
         }
         catch(Exception e) {e.printStackTrace();}

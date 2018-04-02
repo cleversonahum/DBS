@@ -15,7 +15,7 @@ public class Main {
         MDR.start();
         UC.start();
         
-        System.out.println("Hello");
-        FileChunk.splitFile("./src/teste2",1234,2,"224.0.0.1",3785,(channels.MDB) MDB);
+        //System.out.println("Hello");
+        //FileChunk.splitFile("./src/teste2",1234,2,"224.0.0.1",3785,(channels.MDB) MDB);
     }
 }
