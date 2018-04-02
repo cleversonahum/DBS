@@ -35,14 +35,17 @@ public class FileChunk implements RMI {
 
         return rFile;
     }
-    /*Deletes the chunks in the respective folders
+    
+   
+   /*
+   * Deletes the chunks in the respective folders
    * @param fileName Respective file id of the chunks
    */
-  public static void deleteChunks (String fileID) {
+  public void deleteChunks (String fileID) {
 
       String filePath= "data/files/";
       File file = new File(filePath);
-        File[] listDir = file.listFiles();
+      File[] listDir = file.listFiles();
 
         for (int i = 0; i < listDir.length; i++) {
 
