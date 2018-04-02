@@ -13,8 +13,13 @@ public class MC extends Channel {
 	public void select (DatagramPacket dPacket) {
 
 			Message M=new Message(dPacket);
-
-			if(M.getMessageType().equals("DELETE")) { //Checks if the message has the command expected
+			System.out.println("MC MC");
+			
+			if(M.getMessageType().equals("STORED")) {
+				System.out.println("RECEIVED STORE with NUMBER: " + M.getChunkNumber());
+			}
+			
+			else if(M.getMessageType().equals("DELETE")) { //Checks if the message has the command expected
 	       //Here some Function to Delete the file and all chunks related to it
 	       System.out.println("Delete chunk function called");
 
