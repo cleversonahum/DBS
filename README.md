@@ -5,11 +5,11 @@ TO compile and execute:
 
 Go to src folder,
 
-rmiregistry &
-javac Main.java
-java Main
+rmiregistry & ,
+javac Main.java ,
+java Main ,
 
 In a new terminal:
 
-javac Client.java
-java Client
+javac Client.java ,
+java Client ,
