@@ -16,6 +16,6 @@ public class Main {
         UC.start();
         
         System.out.println("Hello");
-        FileChunk.deleteFile("teste2",1234,"224.0.0.0",3781,(channels.MC) MC);
+        //FileChunk.deleteFile("teste2",1234,"224.0.0.0",3781,(channels.MC) MC);
     }
 }

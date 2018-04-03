@@ -30,12 +30,14 @@ public class FileChunk implements RMI {
         System.out.println("TESTE3");
     }
 
-    public void storeFile(String fileId, byte[] data){
+    public void storeFile(String fileId, int serverID, int repDeg, String addr, int port, byte[] data){
         //System.out.println("Writing Chunk into Disk"); //code line to delete after
         try{
             Path pathChunk = Paths.get(PATH.concat(Message.getHash(fileId)));
             Files.createDirectories(pathChunk.getParent());
             Files.write(pathChunk, data);
+            
+            splitFile(PATH.concat(Message.getHash(fileId)),1234,2,"224.0.0.1",3785);
 
         }
         catch(Exception e) {e.printStackTrace();}
@@ -52,8 +54,8 @@ public class FileChunk implements RMI {
     
    
    
-  public static void deleteFile(String fileName, int serverID, String address,int port,MC mc) {
-	  
+  public void deleteFile(String fileName, int serverID, String address,int port) {
+	  MC mc = new MC('m',"224.0.0.0",3781, 80000, "MC");
 	  String fileID= Message.getHash(fileName);
 	  String header = "DELETE "+ "1.0 " + Integer.toString(serverID) + " " + fileID + " " +"\r\n\r\n";
 	  System.out.println(header);
@@ -61,7 +63,8 @@ public class FileChunk implements RMI {
 	  
   }
   
-  public static void splitFile(String fileName, int serverID, int repDeg,  String address,int port, MDB mdb) {
+  public static void splitFile(String fileName, int serverID, int repDeg,  String address,int port) {
+	  MDB mdb = new MDB('m',"224.0.0.1",3785, 80000, "MDB");
 	  
 	  File f = new File(fileName);
 	  

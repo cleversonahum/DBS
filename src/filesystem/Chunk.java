@@ -51,7 +51,7 @@ public class Chunk {
      */
     public static void deleteChunks (String fileID) {
 
-        String filePath= "data/chunks/";
+        String filePath= "src/data/chunks/";
         File file = new File(filePath);
         File[] listDir = file.listFiles();
 
