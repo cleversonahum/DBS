@@ -37,7 +37,7 @@ public class FileChunk implements RMI {
             Files.createDirectories(pathChunk.getParent());
             Files.write(pathChunk, data);
             
-            splitFile(PATH.concat(Message.getHash(fileId)),1234,2,"224.0.0.1",3785);
+            splitFile(fileId),1234,2,"224.0.0.1",3785);
 
         }
         catch(Exception e) {e.printStackTrace();}
